@@ -86,6 +86,9 @@
     isNormalUser = true;
     description = "home-server";
     extraGroups = [ "networkmanager" "wheel" ];
+    openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMdmW0TiEQVdGv19NH4Qu00pjp0kAqOdDfGeaq+15XXn home-server"
+      ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -111,7 +114,7 @@
   environment.etc."nextcloud-admin-pass".text = "PWD1234567";
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     hostName = "home-server";
     config.adminpassFile = "/etc/nextcloud-admin-pass";
     config.dbtype = "sqlite";
@@ -149,6 +152,7 @@
     git
     pciutils
     hello-unfree
+    magic-wormhole
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -165,7 +169,17 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+      enable = true;
+      ports = [ 2232 ];
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
+        #AllowUsers = [ "home-server" ];
+      };
+    };
+  #services.fail2ban.enable = true;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 80 ];
