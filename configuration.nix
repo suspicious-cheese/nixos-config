@@ -17,12 +17,23 @@
   networking.hostName = "home-server"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  fileSystems."/mnt/media" = {
+  	device = "/dev/disk/by-uuid/5bac0ca4-3710-45c3-b929-451b6450c3b4";
+  	fsType = "ext4";
+  	options = [
+  		"nofail"
+  		"defaults"
+  	];
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  users.groups.media = {};
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -85,7 +96,7 @@
   users.users.homeserver = {
     isNormalUser = true;
     description = "home-server";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "media" ];
     openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMdmW0TiEQVdGv19NH4Qu00pjp0kAqOdDfGeaq+15XXn home-server"
       ];
