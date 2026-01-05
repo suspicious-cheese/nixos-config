@@ -192,6 +192,37 @@
     };
   #services.fail2ban.enable = true;
 
+
+  services.samba = {
+    enable = true;
+    openFirewall = true;  # Opens necessary ports
+    
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "home-server";
+        "security" = "user";
+        "hosts allow" = "192.168.2. 127.0.0.1";  # Adjust to your network
+        "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "never";
+        "server min protocol" = "SMB2";
+      };
+      
+      media = {
+        path = "/mnt/media";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "valid users" = "@media";
+        "create mask" = "0664";
+        "directory mask" = "0775";
+      };
+    };
+  };
+
+  
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 80 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
