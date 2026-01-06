@@ -17,7 +17,7 @@
         modules = [
         ./configuration.nix
         #./host/home-server/hardware-configuration.nix
-        ./xfce.nix
+        #./xfce.nix
         ];
       };
     };

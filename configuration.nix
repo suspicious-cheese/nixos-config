@@ -146,16 +146,16 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    kdePackages.kate
+    #kdePackages.kate
     plex
     nextcloud31
     btop
     jellyfin
     jellyseerr
-    arc-theme
-    papirus-icon-theme
+    #arc-theme
+    #papirus-icon-theme
     yt-dlp
-    vlc
+    #vlc
     micro
     bat
     alsa-utils
