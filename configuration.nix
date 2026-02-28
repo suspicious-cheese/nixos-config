@@ -68,12 +68,19 @@
 
   # Enable zsh
   programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+
+  # Disable all sleeping behavior
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
