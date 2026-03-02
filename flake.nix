@@ -16,6 +16,7 @@
         system = "x86_64-linux";
         modules = [
         ./configuration.nix
+        ./home-assistant.nix
         #./host/home-server/hardware-configuration.nix
         #./xfce.nix
         ];

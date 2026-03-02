@@ -165,7 +165,6 @@
     #arc-theme
     #papirus-icon-theme
     yt-dlp
-    #vlc
     micro
     bat
     alsa-utils
@@ -197,10 +196,10 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
-        #AllowUsers = [ "home-server" ];
+        AllowUsers = [ "homeserver" ];
       };
     };
-  #services.fail2ban.enable = true;
+  services.fail2ban.enable = true;
 
 
   services.samba = {
