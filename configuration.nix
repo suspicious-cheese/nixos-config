@@ -81,6 +81,7 @@
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
